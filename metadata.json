@@ -1,0 +1,8 @@
+{
+  "name": "Chinese Family Tree AI",
+  "description": "A smart genealogy application to visualize family history with AI-powered insights, photo analysis, and relationship reasoning.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

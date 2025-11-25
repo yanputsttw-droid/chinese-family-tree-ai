@@ -1,3 +1,4 @@
+
 import { FamilyTreeData } from './types';
 
 export const INITIAL_DATA: FamilyTreeData = {
