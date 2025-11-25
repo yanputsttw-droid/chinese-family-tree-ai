@@ -13,18 +13,16 @@ COPY package*.json ./
 # 安装依赖（使用--legacy-peer-deps）
 RUN npm install --legacy-peer-deps
 
-# 安装Prisma CLI
-RUN npm install -g prisma
-
-# 复制配置文件
+# 复制Prisma配置文件
 COPY prisma.config.ts ./
 COPY schema.prisma ./
+COPY prisma/ ./prisma/
 
-# 复制所有应用代码
+# 生成Prisma客户端（使用npx确保使用项目本地安装的prisma）
+RUN npx prisma generate
+
+# 复制所有应用代码（不包括已经复制的配置文件）
 COPY . .
-
-# 生成Prisma客户端
-RUN prisma generate
 
 # 构建应用
 RUN npm run build
