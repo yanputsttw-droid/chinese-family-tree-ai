@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../generated';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool } from 'pg';
 import path from 'path';
