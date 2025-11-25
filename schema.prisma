@@ -1,0 +1,38 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Stores family tree data
+model Family {
+  id        Int      @id @default(autoincrement())
+  code      String   @unique // Unique ID (e.g., FAM001)
+  name      String   // Display Name
+  password  String?  // Admin password
+  root      String   @db.Text // Store the JSON tree structure as a large text string
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Stores linking requests between families
+model LinkRequest {
+  id              String   @id @default(uuid())
+  fromCode        String   // The branch family requesting access
+  toCode          String   // The main family being requested
+  targetName      String   // Name of the ancestor connecting them
+  targetBirthYear String   // Birth year for verification
+  status          String   @default("pending") // pending, approved, rejected
+  isHidden        Boolean  @default(false)     // Visibility toggle
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([fromCode])
+  @@index([toCode])
+}
