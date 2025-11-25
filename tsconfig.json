@@ -24,6 +24,20 @@
       ]
     },
     "allowImportingTsExtensions": true,
-    "noEmit": true
-  }
+    "noEmit": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "*.ts",
+    "*.tsx",
+    "*.js",
+    "*.jsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

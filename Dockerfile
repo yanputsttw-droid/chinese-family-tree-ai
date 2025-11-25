@@ -25,8 +25,8 @@ RUN npm run build
 # 暴露端口
 EXPOSE 3000
 
-# 创建启动脚本，等待数据库就绪后运行迁移和启动服务器
-RUN echo '#!/bin/sh\n\necho "Waiting for database to be ready..."\n\n# 等待数据库服务可用\nwhile ! nc -z db 5432; do\n  echo "Database not available yet, waiting 3 seconds..."\n  sleep 3\ndone\n\necho "Database is ready!"\n\n# 运行数据库迁移\necho "Running database migrations..."\nnpx prisma migrate dev --name init 2>/dev/null || echo "Migration skipped (maybe already exists)"\n\n# 启动服务器\necho "Starting server..."\nnode server.js' > /app/start.sh
+# 复制启动脚本
+COPY start-render.sh /app/start.sh
 
 # 使启动脚本可执行
 RUN chmod +x /app/start.sh

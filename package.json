@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.js",
+    "generate": "npx prisma generate",
+    "migrate": "npx prisma migrate deploy"
   },
   "dependencies": {
     "react": "^19.2.0",
