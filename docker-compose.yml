@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # 1. Database Service
+  db:
+    image: postgres:15-alpine
+    container_name: family_tree_db
+    restart: always
+    environment:
+      POSTGRES_USER: family_user
+      POSTGRES_PASSWORD: family_password
+      POSTGRES_DB: family_tree_db
+    volumes:
+      # Map to local NAS folder for persistence
+      - ./postgres_data:/var/lib/postgresql/data
+    networks:
+      - family_net
+
+  # 2. Application Service (Frontend + Backend)
+  app:
+    build: .
+    image: family-tree-app:latest
+    container_name: family_tree_app
+    restart: always
+    ports:
+      - "9595:3000"
+    environment:
+      # Runtime env for Backend
+      DATABASE_URL: "postgresql://family_user:family_password@db:5432/family_tree_db?schema=public"
+      PORT: 3000
+      # Frontend env variables
+      VITE_AI_API_KEY: "your_api_key_here"
+      VITE_AI_BASE_URL: "https://api.deepseek.com"
+      VITE_AI_MODEL: "deepseek-chat"
+    depends_on:
+      - db
+    networks:
+      - family_net
+
+networks:
+  family_net:
+    driver: bridge
