@@ -20,7 +20,7 @@ services:
     dockerContext: .
     dockerfilePath: ./Dockerfile
     buildCommand: echo "Build completed"
-    startCommand: /app/start.sh
+    startCommand: /app/start-render.sh
     autoDeploy: true
     envVars:
       - key: DATABASE_URL

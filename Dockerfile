@@ -17,7 +17,7 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # 生成Prisma客户端（使用npx确保使用项目本地安装的prisma）
-RUN npx prisma generate
+RUN npx prisma generate --schema=./schema.prisma
 
 # 构建应用
 RUN npm run build

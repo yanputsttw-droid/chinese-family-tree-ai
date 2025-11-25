@@ -7,16 +7,30 @@ set -e
 echo "Current directory: $(pwd)"
 echo "Node version: $(node --version)"
 echo "npm version: $(npm --version)"
-echo "DATABASE_URL: ${DATABASE_URL:0:20}..."
 
-# 确保配置文件存在
-echo "=== Checking configuration files ==="
-ls -la prisma.config.js schema.prisma
-ls -la
+# 检查环境变量
+if [ -z "$DATABASE_URL" ]; then
+  echo "ERROR: DATABASE_URL is not set"
+  exit 1
+fi
+
+echo "DATABASE_URL is set (first 50 chars): ${DATABASE_URL:0:50}..."
+
+# 确保Prisma客户端已生成
+echo "=== Generating Prisma Client ==="
+npx prisma generate --schema=./schema.prisma
+
+# 显示Prisma状态
+echo "=== Prisma Status ==="
+npx prisma studio --schema=./schema.prisma &
 
 # 运行数据库迁移
 echo "=== Running database migrations ==="
-./node_modules/.bin/prisma migrate deploy
+npx prisma migrate deploy --schema=./schema.prisma
+
+# 构建应用
+echo "=== Building application ==="
+npm run build
 
 # 启动服务器
 echo "=== Starting server ==="
