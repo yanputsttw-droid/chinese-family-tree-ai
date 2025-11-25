@@ -63,6 +63,20 @@ postgresql://[USER]:[PASSWORD]@[HOST]:[PORT]/[DATABASE]?schema=[SCHEMA]
 postgresql://family_user:password123@localhost:5432/family_tree_db?schema=public
 ```
 
+## Prisma Client 初始化
+
+在 Prisma 7 中，Prisma Client 的初始化方式有所变化。我们不再使用 adapter，而是直接通过 `datasources` 选项传递数据库 URL：
+
+```javascript
+const prisma = new PrismaClient({ 
+  datasources: {
+    db: {
+      url: databaseUrl
+    }
+  }
+});
+```
+
 ## 本地开发配置
 
 在本地开发时，你可以通过以下方式设置环境变量：

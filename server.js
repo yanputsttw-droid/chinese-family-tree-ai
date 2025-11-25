@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { PrismaClient } from '../generated';
-import { PrismaAdapterPg } from '@prisma/adapter-pg';
-import pg from 'pg';
+import { PrismaClient } from '@prisma/client';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
@@ -18,14 +16,14 @@ const databaseUrl = process.env.DATABASE_URL || "postgresql://family_user:family
 
 const app = express();
 
-// Create a PostgreSQL connection pool
-const pool = new pg.Pool({ connectionString: databaseUrl });
-
-// Create the Prisma adapter with the pool
-const adapter = new PrismaAdapterPg(pool);
-
-// Create the Prisma Client with the adapter
-const prisma = new PrismaClient({ adapter });
+// Create the Prisma Client with the database URL for Prisma 7
+const prisma = new PrismaClient({ 
+  datasources: {
+    db: {
+      url: databaseUrl
+    }
+  }
+});
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
