@@ -12,10 +12,11 @@ echo "DATABASE_URL: ${DATABASE_URL:0:20}..."
 # 确保配置文件存在
 echo "=== Checking configuration files ==="
 ls -la prisma.config.ts schema.prisma
+ls -la
 
 # 运行数据库迁移
 echo "=== Running database migrations ==="
-npx prisma migrate deploy
+./node_modules/.bin/prisma migrate deploy
 
 # 启动服务器
 echo "=== Starting server ==="
