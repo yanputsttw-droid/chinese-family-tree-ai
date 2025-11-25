@@ -18,3 +18,9 @@ View your app in AI Studio: https://ai.studio/apps/drive/1dZLgXYmtI4ak-A2hI8wYhM
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Prisma 7 Configuration
+
+This project uses Prisma 7, which requires a separate configuration file `prisma.config.ts` for database connection settings. The database URL is no longer defined in `schema.prisma` but in this configuration file.
+
+To modify the database connection, update the `prisma.config.ts` file in the project root.

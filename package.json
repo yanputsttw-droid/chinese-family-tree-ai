@@ -9,28 +9,30 @@
     "preview": "vite preview",
     "start": "node server.js",
     "generate": "npx prisma generate",
-    "migrate": "npx prisma migrate deploy"
+    "migrate": "npx prisma migrate deploy",
+    "validate-prisma": "npx prisma validate"
   },
   "dependencies": {
+    "@google/genai": "^1.30.0",
+    "@prisma/adapter-pg": "^7.0.0",
+    "@prisma/client": "^7.0.0",
+    "@prisma/config": "^7.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^5.1.0",
+    "lucide-react": "^0.554.0",
+    "path": "^0.12.7",
+    "pg": "^8.11.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "lucide-react": "^0.554.0",
-    "@google/genai": "^1.30.0",
-    "xlsx": "latest",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "@prisma/client": "^7.0.0",
-    "@prisma/adapter-pg": "^7.0.0",
-    "pg": "^8.11.0",
-    "dotenv": "^16.4.5",
-    "path": "^0.12.7",
-    "url": "^0.11.4"
+    "url": "^0.11.4",
+    "xlsx": "latest"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
     "@vitejs/plugin-react": "^5.0.0",
+    "prisma": "^7.0.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0",
-    "prisma": "^7.0.0"
+    "vite": "^6.2.0"
   }
 }

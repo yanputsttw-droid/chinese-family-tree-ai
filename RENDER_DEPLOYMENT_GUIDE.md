@@ -85,6 +85,12 @@
    ```
 3. 等待迁移完成（约1-2分钟）
 
+### Prisma 7 配置说明
+
+本项目使用 Prisma 7，它将数据库连接配置移到了 `prisma.config.ts` 文件中。这意味着你不再需要在 `schema.prisma` 文件中定义数据库 URL。
+
+数据库连接 URL 现在完全由 `prisma.config.ts` 文件管理，该文件会从 `DATABASE_URL` 环境变量读取连接信息。
+
 ## 🌐 访问应用
 
 1. 部署完成后，应用状态会显示为「Live」
