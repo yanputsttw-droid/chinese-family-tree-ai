@@ -7,6 +7,11 @@ set -e
 echo "Current directory: $(pwd)"
 echo "Node version: $(node --version)"
 echo "npm version: $(npm --version)"
+echo "DATABASE_URL: ${DATABASE_URL:0:20}..."
+
+# 确保配置文件存在
+echo "=== Checking configuration files ==="
+ls -la prisma.config.ts schema.prisma
 
 # 运行数据库迁移
 echo "=== Running database migrations ==="

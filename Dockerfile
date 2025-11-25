@@ -16,6 +16,10 @@ RUN npm install --legacy-peer-deps
 # 安装Prisma CLI
 RUN npm install -g prisma
 
+# 复制配置文件
+COPY prisma.config.ts ./
+COPY schema.prisma ./
+
 # 复制所有应用代码
 COPY . .
 

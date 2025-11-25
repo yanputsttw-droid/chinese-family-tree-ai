@@ -1,8 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import { PrismaClient } from '@prisma/client';
+import { PrismaPg } from '@prisma/adapter-pg';
+import { Pool } from 'pg';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,13 +17,15 @@ const __dirname = path.dirname(__filename);
 const databaseUrl = process.env.DATABASE_URL || "postgresql://family_user:family_password@db:5432/family_tree_db?schema=public";
 
 const app = express();
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: databaseUrl,
-    },
-  },
-});
+
+// Create a PostgreSQL connection pool
+const pool = new Pool({ connectionString: databaseUrl });
+
+// Create the Prisma adapter with the pool
+const adapter = new PrismaPg(pool);
+
+// Create the Prisma Client with the adapter
+const prisma = new PrismaClient({ adapter });
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
