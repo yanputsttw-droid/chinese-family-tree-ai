@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # 设置错误时退出
 set -e

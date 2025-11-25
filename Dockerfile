@@ -16,6 +16,12 @@ RUN npm install --legacy-peer-deps
 # 复制所有应用代码
 COPY . .
 
+# 调试：检查文件是否正确复制
+RUN ls -la /app
+RUN echo "=== Checking start-render.sh exists and has correct permissions ==="
+RUN if [ -f /app/start-render.sh ]; then echo "start-render.sh exists"; else echo "ERROR: start-render.sh NOT FOUND"; fi
+RUN cat /app/start-render.sh
+
 # 生成Prisma客户端（使用npx确保使用项目本地安装的prisma）
 RUN npx prisma generate
 
