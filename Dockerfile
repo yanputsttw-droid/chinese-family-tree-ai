@@ -1,23 +1,26 @@
-# 使用稳定的Node.js基础镜像
-FROM node:18-alpine
+# 使用兼容Prisma的Node.js基础镜像
+FROM node:20-alpine
 
 # 安装必要的依赖包
-RUN apk add --no-cache netcat-openbsd
+RUN apk add --no-cache netcat-openbsd openssl python3 make g++
 
 # 设置工作目录
 WORKDIR /app
 
-# 先复制package.json（不依赖package-lock.json）
-COPY package.json ./
+# 先复制package.json和package-lock.json
+COPY package*.json ./
 
-# 安装依赖（使用--legacy-peer-deps并允许npm生成package-lock.json）
+# 安装依赖（使用--legacy-peer-deps）
 RUN npm install --legacy-peer-deps
+
+# 安装Prisma CLI
+RUN npm install -g prisma
 
 # 复制所有应用代码
 COPY . .
 
 # 生成Prisma客户端
-RUN npx prisma generate
+RUN prisma generate
 
 # 构建应用
 RUN npm run build
