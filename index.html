@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智慧家族树</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['"Noto Serif SC"', 'serif'],
+              calligraphy: ['"Ma Shan Zheng"', 'cursive'],
+            },
+            colors: {
+              'china-red': '#8e0000',
+              'parchment': '#fdfbf7',
+              'gold-accent': '#d4af37',
+            }
+          },
+        },
+      }
+    </script>
+    <style>
+      /* Custom scrollbar for better aesthetics */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c1a260; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #8e0000; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/package/xlsx.mjs",
+    "cors": "https://aistudiocdn.com/cors@^2.8.5",
+    "express": "https://aistudiocdn.com/express@^5.1.0",
+    "@prisma/client": "https://aistudiocdn.com/@prisma/client@^7.0.0",
+    "path": "https://aistudiocdn.com/path@^0.12.7",
+    "url": "https://aistudiocdn.com/url@^0.11.4"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-parchment text-gray-800 font-serif antialiased">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
